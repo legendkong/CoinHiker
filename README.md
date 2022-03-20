@@ -129,10 +129,16 @@ What the following workflow does is that it sends the user a notification via Te
      <p align="center">
        <img src="https://github.com/legendkong/StockHiker/blob/main/images/telebotfinal.gif"></p> <br>
     <p align="center">       
-   *My telegram bot updates me whenever somebody commits something into the repository!:partying_face:
+   My telegram bot updates me whenever somebody commits something into the repository!:partying_face:
      </p>
 <br><br>
     
  
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    
+# Credits
+[Uli](https://www.github.com/u1i) for introducing me to the world of DevOps. <br>
+[Cyan Infinite](https://www.cyaninfinite.com/getting-updates-from-github-via-telegram-bot/) for documentation of implementation of Telegram Notification Bot. <br>
+[DevOps Journey](https://www.youtube.com/watch?v=mFFXuXjVgkU&t=329s) for super-linter tutorial.
 
