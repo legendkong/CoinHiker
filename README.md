@@ -8,7 +8,7 @@ A telegram bot for stock alerts.
 Built using : [Replit](https://www.replit.com/~)
   
 ## Notes
-The main focus of this project is to display the execution of workflow each time somebody commits a change via the use of *GitHub Actions' CI/CD*. <br>
+The main focus of this project is to adopt the DevOps culture to display the execution of workflow each time somebody commits a change via the use of *GitHub Actions*. <br>
   <img src="https://github.com/legendkong/StockHiker/blob/main/images/GitHub_Actions.png" width="200" height="120"><br>
 I created two seperate workflows:
   <li> Super-linter
