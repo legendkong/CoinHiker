@@ -1,7 +1,6 @@
 import os
 import telebot
 import yfinance as yf 
-import datetime as dt
 
 API_KEY = os.getenv('API_KEY')
 bot = telebot.TeleBot(API_KEY)
