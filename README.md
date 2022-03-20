@@ -40,11 +40,11 @@ The Super Linter is a source code repository that is packaged into a Docker cont
     
 *How it works*<br>
 ------------------
-When you’ve set your repository to start running this action, any time you open a pull request, it will start linting the code case and return via the Status API. It will let you know if any of your code changes passed successfully, or if any errors were detected, where they are, and what they are. This then allows the developer to go back to their branch, fix any issues, and create a new push to the open pull request. At that point, the Super Linter will run again and validate the updated code and repeat the process. You can configure your branch protection rules to make sure all code must pass before being able to merge as an additional measure. <br>
+When you’ve set your repository to start running this action, any time you open a pull request, it will start linting the code case and return via the Status API. It will let you know if any of your code changes passed successfully, or if any errors were detected, where they are, and what they are. This then allows the developer to go back to their branch, fix any issues, and create a new push to the open pull request. At that point, the Super Linter will run again and validate the updated code and repeat the process. You can configure your branch protection rules to make sure all code must pass before being able to merge as an additional measure. <br><br>
     
 *Wait...what the heck is a lint even?*<br>
 ------------------    
-Lint, or a linter, is a static code analysis tool used to flag programming errors, bugs, stylistic errors and suspicious constructs.[4] The term originates from a Unix utility that examined C language source code. Check out the full meaning behind *lint* [here](https://www.en.wikipedia.org/wiki/Lint_(software)).
+Lint, or a linter, is a static code analysis tool used to flag programming errors, bugs, stylistic errors and suspicious constructs. The term originates from a Unix utility that examined C language source code. Check out the full meaning behind *lint* [here](https://www.en.wikipedia.org/wiki/Lint_(software)).
     
     
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -88,19 +88,21 @@ The Telegram Custom Message Action will be added to my repository such that a no
 ------------------   
  1. Create a Telegram Bot using [BotFather](https://t.me/botfather) 
  2. Get your Token Key after creating the bot. I cancelled out the token key for the sake of privacy.
-  <img src="https://github.com/legendkong/StockHiker/blob/main/images/token-key-telegram-new.jpg"> <br>
+     <p align="center">
+  <img src="https://github.com/legendkong/StockHiker/blob/main/images/token-key-telegram-new.jpg"></p><br>
     
  3. Use secrets variable to store the Telegram bot token and our chat identifier key (in order to know who to notify when there is a change in the GitHub repo status). Visit the following URL on your web browser:
     https://api.telegram.org/bot*TokenID*/getUpdates 
     where *TokenID* is your telegram token key.
  
  4. Get the unique chat id from the JSON output.
-     <img src="https://github.com/legendkong/StockHiker/blob/main/images/jsonkey.png"> <br>
+    <p align="center">
+      <img src="https://github.com/legendkong/StockHiker/blob/main/images/jsonkey.PNG"></p> <br>
 
  5. Add variables *TELEGRAM_TO* and *TELEGRAM_TOKEN* into the Secrets of your repository, where *TELEGRAM_TO*'s value is your unique chat id and *TELEGRAM_TOKEN* is your token key.
     
  6. Set up a new workflow under GitHub Actions within your repository. Update the name from "main.yml" to "tg-notify.yml". Replace the code with the one as shown below.
-    
+    <p align="center"> 
 ```
 name: tg-notify
 on: [push, pull_request]
@@ -117,10 +119,20 @@ jobs:
         message: |  #https://help.github.com/en/actions/reference/contexts-and-expression-syntax-for-github-actions#github-context
           ${{ github.event_name }} commit in ${{ github.repository }} by "${{ github.actor }}". [${{github.sha}}@${{ github.ref }}]
 ```
-    <br>
+    
+    
 What the following workflow does is that it sends the user a notification via Telegram when the repo have a new push commit or pull request. The message would contain the commit status (either a push or pull request) with the repo name, followed by the username of the person who triggered the workflow. 
+    <br><br>
     
 7. Click on "Start commit" and select "Commit New File". This will create the work flow and start GitHub Action!:relieved:
     
-
+     <p align="center">
+       <img src="https://github.com/legendkong/StockHiker/blob/main/images/telebotfinal.gif"></p> <br>
+    <p align="center">       
+   *My telegram bot updates me whenever somebody commits something into the repository!:partying_face:
+     </p>
+<br><br>
+    
+ 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
