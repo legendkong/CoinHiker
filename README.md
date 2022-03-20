@@ -86,7 +86,41 @@ The Telegram Custom Message Action will be added to my repository such that a no
     
 *How it works*<br>
 ------------------   
-  
+ 1. Create a Telegram Bot using [BotFather](https://t.me/botfather) 
+ 2. Get your Token Key after creating the bot. I cancelled out the token key for the sake of privacy.
+  <img src="https://github.com/legendkong/StockHiker/blob/main/images/token-key-telegram-new.jpg"> <br>
+    
+ 3. Use secrets variable to store the Telegram bot token and our chat identifier key (in order to know who to notify when there is a change in the GitHub repo status). Visit the following URL on your web browser:
+    https://api.telegram.org/bot*TokenID*/getUpdates 
+    where *TokenID* is your telegram token key.
  
+ 4. Get the unique chat id from the JSON output.
+     <img src="https://github.com/legendkong/StockHiker/blob/main/images/jsonkey.png"> <br>
+
+ 5. Add variables *TELEGRAM_TO* and *TELEGRAM_TOKEN* into the Secrets of your repository, where *TELEGRAM_TO*'s value is your unique chat id and *TELEGRAM_TOKEN* is your token key.
+    
+ 6. Set up a new workflow under GitHub Actions within your repository. Update the name from "main.yml" to "tg-notify.yml". Replace the code with the one as shown below.
+    
+```
+name: tg-notify
+on: [push, pull_request]
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Update status
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: |  #https://help.github.com/en/actions/reference/contexts-and-expression-syntax-for-github-actions#github-context
+          ${{ github.event_name }} commit in ${{ github.repository }} by "${{ github.actor }}". [${{github.sha}}@${{ github.ref }}]
+```
+    <br>
+What the following workflow does is that it sends the user a notification via Telegram when the repo have a new push commit or pull request. The message would contain the commit status (either a push or pull request) with the repo name, followed by the username of the person who triggered the workflow. 
+    
+7. Click on "Start commit" and select "Commit New File". This will create the work flow and start GitHub Action!:relieved:
+    
 
 
